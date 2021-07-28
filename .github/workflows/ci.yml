@@ -47,4 +47,6 @@ jobs:
           sudo apachectl restart
 
       - name: Run tests
-        run: sudo -u apache pytest
+        run: |
+          export PYTHONPATH=src
+          pytest
