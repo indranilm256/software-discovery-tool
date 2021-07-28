@@ -34,18 +34,6 @@ jobs:
           python -m pip install --upgrade pip
           sudo pip install Flask launchpadlib simplejson requests pytest
 
-      - name: Add apache user
-        run: | 
-          sudo useradd apache
-      
-      - name: Own SDT package by apache
-        run: |
-          ls
-          cd ..
-          ls
-          sudo chown -R apache:apache software-discovery-tool/
-          sudo apachectl restart
-
       - name: Run tests
         run: |
           export PYTHONPATH=src
