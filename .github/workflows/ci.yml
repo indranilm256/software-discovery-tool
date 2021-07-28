@@ -1,0 +1,38 @@
+name: Python CI with Flask
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  python-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository and submodules
+        uses: actions/checkout@master
+        with:
+          submodules: recursive
+
+      - name: Setup workspace with packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip gcc git python3-dev libssl-dev libffi-dev cron python3-lxml apache2 libapache2-mod-wsgi-py3
+
+      - name: Setup Python version
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Create and start virtual environment
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          sudo pip install 'cffi==1.11.5' 'cryptography==1.4' Flask launchpadlib simplejson requests pytest
+
+      - name: Run tests
+        run: pytest
