@@ -40,6 +40,9 @@ jobs:
       
       - name: Own SDT package by apache
         run: |
+          ls
+          cd ..
+          ls
           sudo chown -R apache:apache software-discovery-tool/
           sudo apachectl restart
 
