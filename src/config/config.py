@@ -15,7 +15,7 @@ proxy_server = 'proxy_server'
 proxy_port = 'proxy_port'
 
 enable_proxy_authentication = False
-server_host = '0.0.0.0'
+server_host = 'localhost'
 server_port = 5000
 
 DISABLE_PAGINATION = False
